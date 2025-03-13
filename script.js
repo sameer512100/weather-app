@@ -1,7 +1,7 @@
 const weatherForm = document.querySelector(".weatherForm");
 const cityInput = document.querySelector(".cityInput");
 const card = document.querySelector(".card");
-const apiKey = "a6f633acb9f226a044a4a935431f90b9"; // Ideally, store this in env variables
+const apiKey = "a6f633acb9f226a044a4a935431f90b9";
 
 weatherForm.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -45,13 +45,15 @@ function displayWeatherInfo(data) {
         current: { temperature, humidity, weather_descriptions }
     } = data;
 
-    card.textContent = "";
+    card.innerHTML = `
+        <h1 class="cityDisplay">${city}</h1>
+        <p class="timeDisplay">Time: ${localtime}</p>
+        <p class="tempDisplay">${temperature}°C</p>
+        <p class="humidityDisplay">Humidity: ${humidity}%</p>
+        <p class="descDisplay">${weather_descriptions[0]}</p>
+        <p class="weatherEmoji">${getWeatherEmoji(weather_descriptions[0])}</p>
+    `;
     card.style.display = "flex";
-
-    const weatherInfo = document.createElement("p");
-    const emoji = getWeatherEmoji(weather_descriptions[0]);
-    weatherInfo.textContent = `City: ${city}, Time: ${localtime}, Temp: ${temperature}°C, Humidity: ${humidity}%, Condition: ${weather_descriptions[0]} ${emoji}`;
-    card.appendChild(weatherInfo);
 }
 
 function getWeatherEmoji(condition) {
@@ -62,14 +64,10 @@ function getWeatherEmoji(condition) {
     if (conditionLower.includes("snow")) return "❄️";
     if (conditionLower.includes("storm")) return "⛈️";
     if (conditionLower.includes("fog")) return "🌫️";
-    return "🌍"; // Default emoji
+    return "🌍";
 }
 
 function displayError(message) {
-    const errorDisplay = document.createElement("p");
-    errorDisplay.textContent = message;
-    errorDisplay.classList.add("errorDisplay");
-    card.textContent = "";
+    card.innerHTML = `<p class="errorDisplay">${message}</p>`;
     card.style.display = "flex";
-    card.appendChild(errorDisplay);
 }
