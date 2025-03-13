@@ -65,23 +65,22 @@ button[type="submit"]:hover {
 
 .tempDisplay {
     font-size: 5rem;
-    font-weight: bold;
+    font-weight: 700;
     color: #e74c3c; /* Red for temperature */
     margin-bottom: 10px;
 }
 
 .descDisplay {
     font-size: 2rem;
-    font-weight: bold;
+    font-weight: 500;
     margin-bottom: 15px;
     color: #34495e;
 }
 
 .humidityDisplay, .timeDisplay {
     font-size: 1.3rem;
-    color: #060606;
+    color: #7f8c8d;
     margin-bottom: 10px;
-    font-weight: bold;
 }
 
 .weatherEmoji {
