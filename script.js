@@ -20,7 +20,7 @@ weatherForm.addEventListener("submit", async (event) => {
 });
 
 async function getWeatherData(city) {
-    const apiUrl = `http://api.weatherstack.com/current?access_key=${apiKey}&query=${city}`;
+    const apiUrl = `https://api.weatherstack.com/current?access_key=${apiKey}&query=${city}`;
     try {
         const response = await fetch(apiUrl);
         if (!response.ok) {
